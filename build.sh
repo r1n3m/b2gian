@@ -51,7 +51,7 @@ ac_add_options --enable-tests
 # you want to forward to. If you get crashes at startup,
 # make sure this line is commented.
 #ac_add_options --enable-b2g-ril
-.
+
 EOF
 git pull
 ./mach build
