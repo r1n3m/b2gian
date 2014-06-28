@@ -1,7 +1,7 @@
 b2gian
 ======
 
-A project to port Firefox OS(B2G) as a Desktop.
+A project to port Firefox OS(B2G) as a Desktop Environment.
 It has its roots on a old project which can be found at this repository 
 https://github.com/fabricedesre/deb-b2g
 
