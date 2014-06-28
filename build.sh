@@ -33,6 +33,26 @@ git clone --depth 1 https://github.com/mozilla/gecko-dev.git
 fi
 echo "updating repo  "
 cd gecko-dev
+touch mozconfig
+cat > mozconfig <<EOF
+. "$topsrcdir/b2g/config/mozconfigs/common"
+
+mk_add_options MOZ_OBJDIR=../build
+mk_add_options MOZ_MAKE_FLAGS="-j9 -s"
+
+ac_add_options --enable-application=b2g
+ac_add_options --disable-libjpeg-turbo
+ 
+# This option is required if you want to be able to run Gaia's tests
+ac_add_options --enable-tests
+
+# turn on mozTelephony/mozSms interfaces
+# Only turn this line on if you actually have a dev phone
+# you want to forward to. If you get crashes at startup,
+# make sure this line is commented.
+#ac_add_options --enable-b2g-ril
+.
+EOF
 git pull
 ./mach build
 ./mach package
@@ -51,14 +71,13 @@ touch tmp/DEBIAN/control
 cat > tmp/DEBIAN/control << EOF
 Package: b2g-DE
 Version: ${VERSION}
-Maintainer: Fabrice Desré <fabrice@desre.org>
-Homepage: https://github.com/fabricedesre/deb-b2g
+Maintainer: Towfique Anam <anamtowfique@gmail.com>
+Homepage: https://github.com/r1n3m/b2gian
 Architecture: amd64
 Description: Boot 2 Gecko which is the technical name of Firefox OS (http://www.mozilla.org/en-US/firefox/os/) is a web based operating system .The project’s architecture eliminates the need for apps to be 
- built on platform-specific native APIs which we commonly see in Devices. Using HTML5, developers everywhere
- can write directly to the Web; they can create amazing user experiences and
- apps unencumbered by the rules and restrictions of closely controlled
- platforms.The Current B2G nightly version is 2.1 and this package uses the nightly b2g version.
+ built on platform-specific native APIs which we commonly see in Devices. The OS extensibly uses HTML5, its apps are tailored for HTML5 and build using
+ them.Developers has their freedom to do anything with their apps and can creates designs using the HTML5 technologies.While the deviceAPIs that are
+ currently available are opensourced. The Current B2G nightly version is 2.1 and this package uses the nightly b2g version.
  As with all Mozilla projects, the Boot to Gecko project is based entirely on
  open standards and the source code is open and accessible to all. WebAPIs to use most of the hardware of devices is being made and we are working with bodies to create APIs which are not yet available.
  .
