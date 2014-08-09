@@ -22,7 +22,7 @@ echo "updating repo  "
 cd ../gaia; git checkout foxdesk; git pull;DEVICE_DEBUG=1 GAIA_DEVICE_TYPE=tablet DESKTOP_SHIMS=1 NOFTU=1 make; cd ..
 
 # Create an archive of the profile.
-tar --directory gaia/profile -cjf  deb-b2g/tmp/opt/b2g/profile.tar.bz2 `ls gaia/profile`
+tar --directory gaia/profile -cjf  b2gian/tmp/opt/b2g/profile.tar.bz2 `ls gaia/profile`
 echo "created archive"
 # Download the latest b2g desktop build and unpack it.
 ##wget https://ftp.mozilla.org/pub/mozilla.org/b2g/nightly/latest-mozilla-central/en-US/b2g-${GECKO_VERSION}.0a1.en-US.linux-x86_64.tar.bz2
@@ -69,7 +69,7 @@ cp b2g.desktop tmp/usr/share/xsessions/b2g.desktop
 touch tmp/DEBIAN/control
 
 cat > tmp/DEBIAN/control << EOF
-Package: b2g-DE
+Package: Fox-DE
 Version: ${VERSION}
 Maintainer: Towfique Anam <anamtowfique@gmail.com>
 Homepage: https://github.com/r1n3m/b2gian
